@@ -52,7 +52,6 @@ def sendemail():
         server.login(gmail_user, gmail_pass)
         server.sendmail(sent_from, email_to, comp)
         server.close()
-
         print('Email sent!')
     except:  
         print('Error')   
