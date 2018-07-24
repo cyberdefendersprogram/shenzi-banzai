@@ -481,4 +481,4 @@ class OTXv2(object):
         for section in indicator_type.sections:
             indicator_url = self.create_indicator_detail_url(indicator_type, indicator, section)
             indicator_dict[section] = self.get(indicator_url)
-return indicator_dict
+        return indicator_dict
