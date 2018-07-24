@@ -29,7 +29,7 @@ def sendemail():
 
 
     # List of attachments
-    attachments = ['/Users/parente_jose/Desktop/API/email.txt']
+    attachments = ['Your Path /email.txt']
 
     # Add the attachments to the message
     for file in attachments:
