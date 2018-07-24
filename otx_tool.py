@@ -7,10 +7,7 @@ from sendemail import sendemail
 
 time = str(datetime.now() - timedelta()) # Time at which script was initiated.
 
-'''
-The following try/except block handles user input options.
-'''
-try:
+try: # Handles user input options.
     opts = getopt.getopt(sys.argv[1:],"hdtmiavro")
     opts = opts[1][0:]
     options = []
@@ -44,23 +41,17 @@ except getopt.GetoptError:
 
 otx = OTXv2("e89676d6a1d9333168218175d7576abc24d33c0a1d20504e56a1151497146d14") # Initializes session with OTXv2 API using API key
 
-if 's' in opts:
+if 's' in opts: # Handles 'search' option, with 'crypto' as the default search query
     x = userSearch
 else:
     x = "crypto"
 
 pulses = otx.search_pulses(x, 40) # Retrieves list (in json format) of top 40 pulses with tag "crypto"
 
-'''
-The pulse_print() function loops through each individual pulse retreived from OTX, and prints their names + the fields requested by the user through options.
-'''
-'''
-reads the textfile pulseid to 
-'''
-with open('pulseid.txt', "r") as pulsefile:
+with open('pulseid.txt', "r") as pulsefile: # Reads text file pulse id 
     pulsesid = pulsefile.read()
 
-def pulse_print():
+def pulse_print(): # Loops through each individual pulse retrieved from OTX, and prints name & requested fields.
     for singularPulse in pulses["results"]:
         print('[+] '+'Pulse Name: '+singularPulse.get('name')+'\n')
         for switch in options:
