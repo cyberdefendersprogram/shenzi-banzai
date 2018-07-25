@@ -5,16 +5,15 @@ import getopt
 import sys
 from sendemail import sendemail
 from otx_tool import otx
+
 def tools():
-
+    # Takes user input for search and removes 'newline' character.
     search = str(input('Please enter search: '))
+    search.strip()
 
-    x = search.strip()
+    pulses = otx.search_pulses(search, 40) # Retrieves json list of top 40 pulses with tag <search>
 
-
-    pulses = otx.search_pulses(x, 40) # Retrieves list (in json format) of top 40 pulses with tag "crypto"
-
-    pulsefile = open('pulseid.txt', "w+")
+    pulsefile = open('pulseIds.txt', "w+") # Creates and opens file to write pulse ID #'s to.
 
  # Loops through each individual pulse retrieved from OTX, and prints name & requested fields.
     '''
@@ -22,7 +21,7 @@ def tools():
     writes to a txt file and checks to see if the threat
     has already been sent. By checking the pulseid in pulsesid
     '''
-    with open('pulseid.txt', "r+") as pulsefile: # Reads text file pulse id 
+    with open('pulseIds.txt', "r+") as pulsefile: # Reads text file pulse id 
             pulseIdList = pulsefile.read()  
     for singularPulse in pulses["results"]:
          
@@ -33,7 +32,7 @@ def tools():
         if pulseid in pulseIdList:
             print("Threat has already been alerted")
         else:
-            pulsefile = open('pulseid.txt', "a+")
+            pulsefile = open('pulseIds.txt', "a+")
             pulsefile.write(pulseid + "\n")
             pulsefile2 = open('email.txt', "a+")
             pulsefile2.write("Name: " +name+ "\n"+"\n" +"Description: " +description+ "\n"+"\n" +"Modified: " +modified+ "\n"+"\n"+"\n")  
