@@ -4,7 +4,7 @@ from datetime import datetime, timedelta
 import getopt
 import sys
 from sendemail import sendemail
-from v4 import all
+
 
 def tools():
     otx = OTXv2("e89676d6a1d9333168218175d7576abc24d33c0a1d20504e56a1151497146d14") # Initializes session with OTXv2 API using API key
