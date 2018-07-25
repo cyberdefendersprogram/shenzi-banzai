@@ -10,8 +10,8 @@ from email import encoders
 
 def sendemail():
 
-    gmail_user = 'mufasacyberdefenders2018@gmail.com'
-    gmail_pass = 'Cyberdefenders_2018'
+    gmail_user = '@gmail.com'
+    gmail_pass = ''
 
     sent_from = gmail_user
 
