@@ -72,12 +72,12 @@ as a text file
 '''
 #def sendemail(name, description, modified):
 def sendemail():
-    gmail_user = 'mufasacyberdefenders2018@gmail.com'
-    gmail_pass = 'Cyberdefenders_2018'
+    gmail_user = '@gmail.com'
+    gmail_pass = ''
 
     sent_from = gmail_user
 
-    email_to = 'mufasacyberdefenders2018@gmail.com'
+    email_to = '@gmail.com'
     
     send_out = MIMEMultipart()
     send_out['Subject'] = 'Potentioal threats on Blockchain'
