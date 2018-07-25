@@ -5,7 +5,6 @@ import getopt
 import sys
 from sendemail import sendemail
 
-
 def tools():
     otx = OTXv2("e89676d6a1d9333168218175d7576abc24d33c0a1d20504e56a1151497146d14") # Initializes session with OTXv2 API using API key
 
@@ -17,7 +16,7 @@ def tools():
     pulses = otx.search_pulses(x, 40) # Retrieves list (in json format) of top 40 pulses with tag "crypto"
 
     with open('pulseid.txt', "r") as pulsefile: # Reads text file pulse id 
-        pulsesid = pulsefile.read()
+        pulseIdList = pulsefile.read()    
 
  # Loops through each individual pulse retrieved from OTX, and prints name & requested fields.
     '''
@@ -31,14 +30,16 @@ def tools():
         description = singularPulse.get('description')
         modified = singularPulse.get('modified') 
         pulseid = singularPulse.get('id')
-        if pulseid in pulsesid:
+        if pulseid in pulseIdList:
             print("Threat has already been alerted")
         else:
             with open('pulseid.txt', "a") as pulsefile:
                 pulsefile.write(pulseid + "\n")
             with open('email.txt', "a") as pulsefile:
                 pulsefile.write("Name: " +name+ "\n"+"\n" +"Description: " +description+ "\n"+"\n" +"Modified: " +modified+ "\n"+"\n"+"\n")  
-   
-    if pulseid not in pulsesid:
+    
+    
+    
+    if pulseid not in pulseIdList:
         sendemail()
         open('email.txt', "w").close()
