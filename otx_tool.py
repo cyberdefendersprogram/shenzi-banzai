@@ -1,3 +1,4 @@
+
 from OTXv2 import OTXv2
 from pandas.io.json import json_normalize
 from datetime import datetime, timedelta
@@ -48,9 +49,6 @@ else:
 
 pulses = otx.search_pulses(x, 40) # Retrieves list (in json format) of top 40 pulses with tag "crypto"
 
-with open('pulseid.txt', "r") as pulsefile: # Reads text file pulse id 
-    pulsesid = pulsefile.read()
-
 def pulse_print(): # Loops through each individual pulse retrieved from OTX, and prints name & requested fields.
     for singularPulse in pulses["results"]:
         print('[+] '+'Pulse Name: '+singularPulse.get('name')+'\n')
@@ -65,32 +63,9 @@ def pulse_print(): # Loops through each individual pulse retrieved from OTX, and
     print("\n"+"AVAILABLE OPTIONS: s:search h:help d:description t:tags m:modified i:id a:author_name \nv:adversary r:references o:revisions\n\ni.e: python3 otx_blkchn.py d n r")
     print()
    
-    '''
-    pulls information from the results of the otx api
-    writes to a txt file and checks to see if the threat
-    has already been sent. By checking the pulseid in pulsesid
-    '''  
-    for singularPulse in pulses["results"]:
-
-        name = singularPulse.get('name')
-        description = singularPulse.get('description')
-        modified = singularPulse.get('modified') 
-        pulseid = singularPulse.get('id')
-        if pulseid in pulsesid:
-            print("Threat has already been alerted")
-        else:
-            with open('pulseid.txt', "a") as pulsefile:
-                pulsefile.write(pulseid + "\n")
-            with open('email.txt', "a") as pulsefile:
-                pulsefile.write("Name: " +name+ "\n"+"\n" +"Description: " +description+ "\n"+"\n" +"Modified: " +modified+ "\n"+"\n"+"\n")  
-   
-    if pulseid not in pulsesid:
-        sendemail()
-        open('email.txt', "w").close()
-
 print()
 print("DATE AND TIME: " + time + "\n")
-print('-'*30)
+print('-'*40)
 print()
 
 
