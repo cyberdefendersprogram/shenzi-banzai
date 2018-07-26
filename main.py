@@ -10,7 +10,7 @@ def main():
     print ("3. Exit")
     print ('-' * 40)
    
-    choice = input('Enter your choice [1-3] : ')
+    choice = int(input('Enter your choice [1-3] :'))
     
     choice = int(choice)
     
@@ -22,4 +22,5 @@ def main():
         SystemExit()
     else:
         print("Invalid number. Try again...")
+
 main()
