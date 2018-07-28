@@ -22,9 +22,11 @@ def sendemail():
     send_out['From'] = hostEmail
     send_out.preamble = 'You will not see this in a MIME-aware mail reader.\n'
     
-    attachment = ['email.txt']
+    attachment = [FULL PATH TO ATTACHMENTS HERE]
 
 # Add the attachment to the message
+    for file in attachments:
+
     try:
         with open(attachment, 'rb') as fp:
             msg = MIMEBase('application', "octet-stream")
