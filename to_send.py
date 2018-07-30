@@ -47,17 +47,16 @@ def tools():
                 for data in raw_data:
                     writer.writerow(data)
 
-    #simple option to email or quit 
-    choice2 = input('1: To Email 2: To quit : ')
+        #simple option to email or quit 
+    option = input('1: To Email 2: To quit : ')
     
-    choice2 = int(choice2)
+    option = int(option)
     
-    if choice2 == 1:
+    if option == 1:
         #uses the email function to send email
         sendemail()
         #delete file once email has sent
         os.remove('pulseIdsList.csv')
-    elif choice2 == 2:
+    elif option == 2:
         #option to quit
-        SystemExit()
-h        
+        SystemExit()      
