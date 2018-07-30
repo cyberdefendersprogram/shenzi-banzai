@@ -32,7 +32,7 @@ def tools():
         #list with data to add to csv file
         raw_data = [{'Pulse Id': pulseid, 'Name': name, 'Description': description, 'Modified': modified}]
         #the path to the file
-        filename = '/Users/parente_jose/Desktop/API/pulseIdsList.csv'
+        filename = 'Your Path to the file /pulseIdsList.csv'
         #use to check for the file
         file_exists = os.path.isfile(filename)
         #opens the file to append ID, Name, Modified, Description
