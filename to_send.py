@@ -5,35 +5,58 @@ import getopt
 import sys
 from sendemail import sendemail
 from otx_tool import otx
+import csv
+import pandas as pd
+from pandas import read_csv
+import os.path
 
 def tools():
-    
-    # Takes user input for search and removes 'newline' character.
+
     search = str(input('Please enter search: '))
-    search.strip()
 
-    pulses = otx.search_pulses(search, 40) # Retrieves json list of top 40 pulses with tag <search>
+    x = search.strip()
 
-    pulsefile = open('pulseIds.txt', "w+") # Creates and opens file to write pulse ID #'s to.
 
-    with open('pulseIds.txt', "r+") as pulsefile: # Opens PulseIds for reading.
-            pulseIdList = pulsefile.read()
+    pulses = otx.search_pulses(x, 40) # Retrieves list (in json format) of top 40 pulses with tag "crypto"
 
-    for singularPulse in pulses["results"]: # 
+
+ # Loops through each individual pulse retrieved from OTX, and prints name & requested fields.
+
+    for singularPulse in pulses["results"]:
+         
         name = singularPulse.get('name')
         description = singularPulse.get('description')
         modified = singularPulse.get('modified') 
         pulseid = singularPulse.get('id')
+        
+        #list with data to add to csv file
+        raw_data = [{'Pulse Id': pulseid, 'Name': name, 'Description': description, 'Modified': modified}]
+        #the path to the file
+        filename = 'Your Path to the file /pulseIdsList.csv'
+        #use to check for the file
+        file_exists = os.path.isfile(filename)
+        #opens the file to append ID, Name, Modified, Description
+        with open(filename, "a") as csv_file:
+            csv_columns_headers = ['Pulse Id','Name','Description','Modified']
+            writer = csv.DictWriter(csv_file, delimiter=',',lineterminator='\n', fieldnames=csv_columns_headers)
+            #if file does not exist write the headers
+            if not file_exists:
+                writer.writeheader()
+            #write the information from raw_data by rows
+            else:
+                for data in raw_data:
+                    writer.writerow(data)
 
-        if pulseid in pulseIdList:
-            print("Threat has already been alerted")
-
-        else:
-            pulsefile = open('pulseIds.txt', "a+")
-            pulsefile.write(pulseid+"\n")
-            email = open('email.txt', "a+")
-            email.write("Name: "+name+"\n"+"\n"+"Description: "+description+ "\n"+"\n"+"Modified: "+modified+"\n"+"\n"+"\n")  
+        #simple option to email or quit 
+    option = input('1: To Email 2: To quit : ')
     
-    if pulseid not in pulseIdList:
+    option = int(option)
+    
+    if option == 1:
+        #uses the email function to send email
         sendemail()
-        email.close()
+        #delete file once email has sent
+        os.remove('pulseIdsList.csv')
+    elif option == 2:
+        #option to quit
+        SystemExit()      
