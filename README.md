@@ -3,7 +3,7 @@
 A tool that pulls relevant blockchain information from IBM's X-Force Threat Intelligence & AlienVault's OpenThreatExchange API. Built upon the Open Threat Exchange Python SDK at https://github.com/AlienVault-OTX/OTX-Python-SDK. 
  
   - Main script is 'otx_tool.py'
-  - Required dependencies (install using pip3):
+  - Required dependencies (install using pip):
       - pandas
       - gspread
       - oauth2client
