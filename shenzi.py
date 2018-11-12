@@ -89,7 +89,7 @@ blockchains =   ['Bitcoin',
                 'Pixie Coin',
                 'Monero Original',
                 'Commercium'
-                ]
+                ] # list of supported blockchains
 
 print()
 coinName = input("Please enter cryptocurrency (type 'list' to show supported coins): ")

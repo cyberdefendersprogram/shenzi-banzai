@@ -13,12 +13,8 @@ import os.path
 def tools():
 
     search = str(input('Please enter search: '))
-
-    x = search.strip()
-
-
-    pulses = otx.search_pulses(x, 40) # Retrieves list (in json format) of top 40 pulses with tag "crypto"
-
+    search.strip()
+    pulses = otx.search_pulses(search, 40) # Retrieves list (in json format) of top 40 pulses with tag "crypto"
 
  # Loops through each individual pulse retrieved from OTX, and prints name & requested fields.
 

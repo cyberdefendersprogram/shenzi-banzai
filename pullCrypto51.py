@@ -1,9 +1,13 @@
+# This is the main script for the Banzai blockchain security assessment.
+
 from urllib.request import urlopen, Request
 import json
 
 class crypto51():
-# .coin_attr is main method. To call, give coin name as argument and then '1's as on flags for algorithm, hash rate,
-# hourly attack cost, and nicehashable percentage.
+
+''' coin_attr is the main method for crypto51. To call, give coin name as argument and then '1's as on flags for algorithm, hash rate, hourly attack cost, and nicehashable percentage.
+'''
+
     def __init__(self):
 
         C51_URL = 'https://www.crypto51.app/coins.json'

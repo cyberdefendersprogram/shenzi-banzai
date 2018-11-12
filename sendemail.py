@@ -1,3 +1,8 @@
+
+'''
+Temporary solution for the sending of vulnerability reports as emails.
+'''
+
 import sys
 import os
 from email.mime.multipart import MIMEMultipart
@@ -5,8 +10,6 @@ from email.mime.text import MIMEText
 import smtplib
 from email.mime.base import MIMEBase
 from email import encoders
-
-#def sendemail(name, description, modified):
 
 def sendemail():
 
