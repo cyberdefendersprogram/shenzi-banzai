@@ -1,4 +1,4 @@
-
+from secrets import otxKey
 from OTXv2 import OTXv2
 from pandas.io.json import json_normalize
 from datetime import datetime, timedelta
@@ -40,7 +40,7 @@ except getopt.GetoptError:
     print("\n"+"python3 otx_blkchn.py h for help"+"\n")
     sys.exit()
 
-otx = OTXv2("e89676d6a1d9333168218175d7576abc24d33c0a1d20504e56a1151497146d14") # Initializes session with OTXv2 API using API key
+otx = OTXv2(otxKey) # Initializes session with OTXv2 API using key contained in secrets.py
 
 if 's' in opts: # Handles 'search' option, with 'crypto' as the default search query
     x = userSearch
@@ -50,11 +50,11 @@ else:
 pulses = otx.search_pulses(x, 40) # Retrieves list (in json format) of top 40 pulses with tag "crypto"
 
 def pulse_print(): # Loops through each individual pulse retrieved from OTX, and prints name & requested fields.
-    for singularPulse in pulses["results"]:
-        print('[+] '+'Pulse Name: '+singularPulse.get('name')+'\n')
+    for aPulse in pulses["results"]:
+        print('[+] '+'Pulse Name: '+aPulse.get('name')+'\n')
         for switch in options:
             try:
-                print('[+] '+switch.title()+': '+singularPulse.get(switch)+'\n')
+                print('[+] '+switch.title()+': '+aPulse.get(switch)+'\n')
             except:
                 print()
         print('-'*30)
@@ -67,12 +67,3 @@ print()
 print("DATE AND TIME: " + time + "\n")
 print('-'*40)
 print()
-
-
-'''       
-try:
-    pulse_print()
-except TypeError:
-    print("\n"+"python3 otx_blkchn.py h for help"+"\n")
-    sys.exit()
-'''
