@@ -3,7 +3,7 @@
 import json
 import datetime
 import requests
-from requests.packages.urllib3.util import Retry
+from urllib3.util import Retry
 from requests.adapters import HTTPAdapter
 
 try:

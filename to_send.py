@@ -11,14 +11,16 @@ from pandas import read_csv
 import os.path
 
 def tools():
-
+    '''
     search = str(input('Please enter search: '))
     search.strip()
     pulsesJSON = otx.search_pulses(search, 40) # Retrieves list (in json format) of top 40 pulses with tag "crypto"
 
+    '''
+
  # Loops through each individual pulse retrieved from OTX, and prints name & requested fields.
 
-    for aPulse in pulsesJSON["results"]:
+    for aPulse in pulses_JSON["results"]:
          
         name = aPulse.get('name')
         description = aPulse.get('description')
@@ -36,7 +38,7 @@ def tools():
         filename = 'shenzi_pulses.csv'
         
         #use to check for the file
-        #file_exists = os.path.isfile(filename)
+        file_exists = os.path.isfile(filename)
         
         #opens the file to append ID, Name, Modified, Description
         with open(filename, "w") as csv_file:
