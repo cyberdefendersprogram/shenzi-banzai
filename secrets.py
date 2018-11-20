@@ -1,4 +1,4 @@
-otxKey = 'test string'
-xforceKey = ['']
+otxKey = 'test'
+xforceKey = 'test'
 
-# add other required keys here....
+# add other required keys here...
