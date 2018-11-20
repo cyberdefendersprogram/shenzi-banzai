@@ -1,4 +1,4 @@
-from pullCrypto51 import crypto51
+from shenzi_helpers import crypto51
 import coinSecureRating
 
 staleRates = {'Bitcoin':(0.41), 'Ethereum':(6.8), 'Litecoin':(0.273), 'Dogecoin':(0.619)}
